@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCRP Staff Handbook | Miami City Roleplay</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #5b21b6;
+            --primary-light: #7c3aed;
+            --primary-dark: #4c1d95;
+            --accent: #06b6d4;
+            --bg-dark: #0c0c0f;
+            --bg-card: #141418;
+            --bg-sidebar: #101014;
+            --bg-hover: #1a1a20;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --border: #1e1e24;
+            --border-light: #27272f;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 300px;
+            background: var(--bg-sidebar);
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 28px 20px;
+            position: sticky;
+            top: 0;
+            border-right: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 2px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 0 8px;
+            margin-bottom: 32px;
+        }
+
+        .sidebar-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(91, 33, 182, 0.3);
+        }
+
+        .sidebar-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar h3 {
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .sidebar-subtitle {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .nav-section {
+            margin-bottom: 24px;
+        }
+
+        .nav-section-title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            padding: 8px 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            margin-bottom: 2px;
+            border: 1px solid transparent;
+        }
+
+        .sidebar a:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            border-color: var(--border-light);
+        }
+
+        .sidebar a i {
+            font-size: 18px;
+            width: 22px;
+            text-align: center;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+        }
+
+        .sidebar a:hover i {
+            color: var(--primary-light);
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            font-size: 11px;
+            padding: 2px 8px;
+            background: var(--bg-hover);
+            border-radius: 20px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Main Content Styles */
+        .content {
+            flex: 1;
+            padding: 48px 80px;
+            max-width: 1200px;
+        }
+
+        .header {
+            margin-bottom: 56px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(91, 33, 182, 0.15);
+            color: var(--primary-light);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(91, 33, 182, 0.2);
+        }
+
+        .header-badge i {
+            font-size: 14px;
+        }
+
+        .header h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+        }
+
+        .header-description {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-top: 16px;
+            max-width: 600px;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .meta-item i {
+            font-size: 16px;
+            color: var(--text-muted);
+        }
+
+        .meta-item strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 48px;
+            scroll-margin-top: 32px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(91, 33, 182, 0.25);
+        }
+
+        .section h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 28px 32px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .card ul {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 2;
+            padding-left: 8px;
+        }
+
+        .card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .card-icon {
+            color: var(--primary-light);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 64px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(145deg, var(--primary), var(--primary-light));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-light);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .content {
+                padding: 40px 50px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .content {
+                padding: 40px;
+            }
+
+            .header h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .section h2 {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 30px 24px;
+            }
+
+            .header-meta {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.05s;
+        }
+        .section:nth-child(3) {
+            animation-delay: 0.1s;
+        }
+        .section:nth-child(4) {
+            animation-delay: 0.15s;
+        }
+        .section:nth-child(5) {
+            animation-delay: 0.2s;
+        }
+        .section:nth-child(6) {
+            animation-delay: 0.25s;
+        }
+        .section:nth-child(7) {
+            animation-delay: 0.3s;
+        }
+        .section:nth-child(8) {
+            animation-delay: 0.35s;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="ph-fill ph-buildings"></i>
+                </div>
+                <div class="sidebar-title">
+                    <h3>MCRP Handbook</h3>
+                    <span class="sidebar-subtitle">Staff Guide</span>
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Getting Started</div>
+                <a href="#intro"><i class="ph ph-house-line"></i> Introduction</a>
+                <a href="#purpose"><i class="ph ph-bullseye"></i> Purpose</a>
+                <a href="#scope"><i class="ph ph-globe"></i> Scope</a>
+                <a href="#expect"><i class="ph ph-user-check"></i> Expectations</a>
+                <a href="#structure"><i class="ph ph-tree-structure"></i> Structure</a>
+                <a href="#activity"><i class="ph ph-clock"></i> Activity</a>
+                <a href="#training"><i class="ph ph-graduation-cap"></i> Training</a>
+                <a href="#ethics"><i class="ph ph-shield-check"></i> Ethics</a>
+                <a href="#logging"><i class="ph ph-file-text"></i> Documentation</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Moderation</div>
+                <a href="#tools"><i class="ph ph-wrench"></i> Moderation Tools</a>
+                <a href="#discipline"><i class="ph ph-gavel"></i> Discipline</a>
+                <a href="#violations"><i class="ph ph-warning"></i> Violations</a>
+                <a href="#rp"><i class="ph ph-mask-happy"></i> Roleplay</a>
+                <a href="#chain"><i class="ph ph-list-numbers"></i> Chain of Command</a>
+                <a href="#tickets"><i class="ph ph-ticket"></i> Ticket Management</a>
+                <a href="#escalation"><i class="ph ph-trend-up"></i> Escalation</a>
+                <a href="#comms"><i class="ph ph-chats-circle"></i> Communication</a>
+                <a href="#evidence"><i class="ph ph-camera"></i> Evidence</a>
+                <a href="#outside"><i class="ph ph-server"></i> Outside Server</a>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title">Staff Policy</div>
+                <a href="#events"><i class="ph ph-calendar-star"></i> Events</a>
+                <a href="#development"><i class="ph ph-chart-line-up"></i> Development</a>
+                <a href="#standards"><i class="ph ph-medal"></i> Standards</a>
+                <a href="#requirements"><i class="ph ph-check-circle"></i> Requirements</a>
+                <a href="#ticketrules"><i class="ph ph-list-checks"></i> Ticket Rules</a>
+                <a href="#ranks"><i class="ph ph-arrow-up-right"></i> Rank Policy</a>
+                <a href="#progressive"><i class="ph ph-scales"></i> Discipline System</a>
+                <a href="#formats"><i class="ph ph-text-aa"></i> Staff Formats</a>
+                <a href="#finalchain"><i class="ph ph-link"></i> Chain Link</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="header">
+                <div class="header-top">
+                    <span class="header-badge">
+                        <i class="ph-fill ph-document"></i>
+                        Official Document
+                    </span>
+                </div>
+                <h1>MCRP Staff Handbook</h1>
+                <p class="header-description">The comprehensive guide to Miami City Roleplay staff procedures, expectations, and policies. Everything you need to know to serve our community effectively.</p>
+                <div class="header-meta">
+                    <div class="meta-item">
+                        <i class="ph ph-calendar"></i>
+                        <span><strong>Last Updated:</strong> 2.6.2026</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ph ph-tag"></i>
+                        <span><strong>Version:</strong> 1.0</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="ph ph-buildings"></i>
+                        <span><strong>Organization:</strong> Diamond Nation Studios</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Section 1.0.1 -->
+            <section class="section" id="intro">
+                <div class="section-header">
+                    <span class="section-number">1.0.1</span>
+                    <h2>Introduction</h2>
+                </div>
+                <div class="card">
+                    <p>Welcome to the <strong>Miami City Roleplay (MCRP)</strong> Staff Team. As a staff member, you are entrusted with maintaining a safe, fair, and immersive environment for all players. Staff members shape the culture, standards, and integrity of the community. This handbook guides staff roles, expectations, procedures, tools, and disciplinary protocols.</p>
+                </div>
+            </section>
+
+            <!-- Section 1.0.2 -->
+            <section class="section" id="purpose">
+                <div class="section-header">
+                    <span class="section-number">1.0.2</span>
+                    <h2>Purpose</h2>
+                </div>
+                <div class="card">
+                    <ul>
+                        <li>
+                            <i class="ph-fill ph-check-circle card-icon"></i>
+                            <span>Clearly define staff responsibilities and authority</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-check-circle card-icon"></i>
+                            <span>Establish professional procedures</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-check-circle card-icon"></i>
+                            <span>Provide guidance for conflict resolution</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-check-circle card-icon"></i>
+                            <span>Maintain transparency and accountability</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 1.0.3 -->
+            <section class="section" id="scope">
+                <div class="section-header">
+                    <span class="section-number">1.0.3</span>
+                    <h2>Scope</h2>
+                </div>
+                <div class="card">
+                    <p>Applies to <strong>Founding Management</strong>, <strong>Moderation</strong>, <strong>Administration</strong>, <strong>Senior Staff</strong>, and <strong>Specialized Roles</strong>. All staff must follow these policies.</p>
+                </div>
+            </section>
+
+            <!-- Section 1.0.4 -->
+            <section class="section" id="expect">
+                <div class="section-header">
+                    <span class="section-number">1.0.4</span>
+                    <h2>Staff Expectations</h2>
+                </div>
+                <div class="card">
+                    <p><strong>Professionalism</strong>, <strong>consistency</strong>, <strong>responsiveness</strong>, <strong>confidentiality</strong>, <strong>teamwork</strong>, and <strong>integrity</strong> are required at all times.</p>
+                </div>
+            </section>
+
+            <!-- Section 1.0.5 -->
+            <section class="section" id="structure">
+                <div class="section-header">
+                    <span class="section-number">1.0.5</span>
+                    <h2>Staff Structure</h2>
+                </div>
+                <div class="card">
+                    <p><strong>Moderators</strong>, <strong>Administrators</strong>, <strong>Internal Affairs</strong>, <strong>Management</strong>, <strong>Directors Board</strong>, <strong>Ownership Board</strong>, <strong>Foundation Board</strong>, <strong>Server Holders</strong>. Moderators enforce rules, Admins oversee moderation, Senior Staff manage complex incidents, Chief Staff hold final authority.</p>
+                </div>
+            </section>
+
+            <!-- Section 1.0.6 -->
+            <section class="section" id="activity">
+                <div class="section-header">
+                    <span class="section-number">1.0.6</span>
+                    <h2>Staff Activity and Accountability</h2>
+                </div>
+                <div class="card">
+                    <ul>
+                        <li>
+                            <i class="ph-fill ph-clock card-icon"></i>
+                            <span><strong>Moderators:</strong> 5 hours/week and 3 actions logged</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-clock card-icon"></i>
+                            <span><strong>Administrators:</strong> 7 hours/week and 5 actions logged</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-warning card-icon"></i>
+                            <span>Inactivity triggers review</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 1.0.7 -->
+            <section class="section" id="training">
+                <div class="section-header">
+                    <span class="section-number">1.0.7</span>
+                    <h2>Staff Training Requirements</h2>
+                </div>
+                <div class="card">
+                    <p><strong>Melonly</strong> proficiency, <strong>disciplinary procedures</strong>, <strong>conflict resolution</strong>, and <strong>evidence collection</strong> training are required.</p>
+                </div>
+            </section>
+
+            <!-- Section 1.0.8 -->
+            <section class="section" id="ethics">
+                <div class="section-header">
+                    <span class="section-number">1.0.8</span>
+                    <h2>Confidentiality and Ethics</h2>
+                </div>
+                <div class="card">
+                    <p>All investigations remain <strong>confidential</strong>. Misuse of authority or leaks may lead to dismissal.</p>
+                </div>
+            </section>
+
+            <!-- Section 1.0.9 -->
+            <section class="section" id="logging">
+                <div class="section-header">
+                    <span class="section-number">1.0.9</span>
+                    <h2>Reporting and Documentation Standards</h2>
+                </div>
+                <div class="card">
+                    <p><strong>User</strong>, <strong>Action</strong>, <strong>Reason</strong>, <strong>Staff Name</strong>, <strong>Date</strong>, and <strong>Proof</strong> must be logged for every disciplinary action.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.0 -->
+            <section class="section" id="tools">
+                <div class="section-header">
+                    <span class="section-number">2.0.0</span>
+                    <h2>Moderation Tools and Procedures</h2>
+                </div>
+                <div class="card">
+                    <p>Use <strong>Melonly</strong> for tickets, logs, punishments, and escalation workflows.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.1 -->
+            <section class="section" id="discipline">
+                <div class="section-header">
+                    <span class="section-number">2.0.1</span>
+                    <h2>Discipline Guidelines</h2>
+                </div>
+                <div class="card">
+                    <p>Escalation thresholds include <strong>warnings</strong>, <strong>kicks</strong>, <strong>mutes</strong>, and <strong>timeouts</strong> before bans.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.2 -->
+            <section class="section" id="violations">
+                <div class="section-header">
+                    <span class="section-number">2.0.2</span>
+                    <h2>Common Rule Violations</h2>
+                </div>
+                <div class="card">
+                    <p><strong>RDM</strong>, <strong>VDM</strong>, <strong>FRP</strong>, <strong>NITRP</strong>, <strong>NLR</strong>, <strong>GTA Driving</strong>, <strong>Staff Disrespect</strong>. Punishments must remain consistent.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.3 -->
+            <section class="section" id="rp">
+                <div class="section-header">
+                    <span class="section-number">2.0.3</span>
+                    <h2>Roleplay Guidelines</h2>
+                </div>
+                <div class="card">
+                    <p>Staff cannot <strong>roleplay</strong> while on duty and must stay neutral during moderation.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.4 -->
+            <section class="section" id="chain">
+                <div class="section-header">
+                    <span class="section-number">2.0.4</span>
+                    <h2>Chain of Command</h2>
+                </div>
+                <div class="card">
+                    <p>Follow hierarchy for disputes. <strong>Chief Administrators</strong> make final decisions.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.5 -->
+            <section class="section" id="tickets">
+                <div class="section-header">
+                    <span class="section-number">2.0.5</span>
+                    <h2>Ticket Management</h2>
+                </div>
+                <div class="card">
+                    <p>Handle tickets professionally and escalate when needed.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.6 -->
+            <section class="section" id="escalation">
+                <div class="section-header">
+                    <span class="section-number">2.0.6</span>
+                    <h2>Escalation Procedures</h2>
+                </div>
+                <div class="card">
+                    <ul>
+                        <li>
+                            <i class="ph-fill ph-minus-circle card-icon"></i>
+                            <span><strong>Minor:</strong> handled by Moderators</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-minus-circle card-icon"></i>
+                            <span><strong>Moderate:</strong> handled by Admins</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-minus-circle card-icon"></i>
+                            <span><strong>Severe:</strong> handled by Chief Admins</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 2.0.7 -->
+            <section class="section" id="comms">
+                <div class="section-header">
+                    <span class="section-number">2.0.7</span>
+                    <h2>Communication Standards</h2>
+                </div>
+                <div class="card">
+                    <p><strong>Professional language</strong> only. Reports must be clear and accurate.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.8 -->
+            <section class="section" id="evidence">
+                <div class="section-header">
+                    <span class="section-number">2.0.8</span>
+                    <h2>Evidence Collection</h2>
+                </div>
+                <div class="card">
+                    <p><strong>Video</strong>, <strong>screenshots</strong>, or <strong>logs</strong> required for serious disciplinary actions.</p>
+                </div>
+            </section>
+
+            <!-- Section 2.0.9 -->
+            <section class="section" id="outside">
+                <div class="section-header">
+                    <span class="section-number">2.0.9</span>
+                    <h2>Outside Server Activity Policy</h2>
+                </div>
+                <div class="card">
+                    <p>No active staffing in <strong>competing servers</strong> without approval. Progressive discipline applies.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.1 -->
+            <section class="section" id="events">
+                <div class="section-header">
+                    <span class="section-number">3.0.1</span>
+                    <h2>Event Moderation</h2>
+                </div>
+                <div class="card">
+                    <p>Ensure fairness and document incidents during events.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.2 -->
+            <section class="section" id="development">
+                <div class="section-header">
+                    <span class="section-number">3.0.2</span>
+                    <h2>Staff Development and Evaluation</h2>
+                </div>
+                <div class="card">
+                    <p>Periodic reviews, feedback sessions, and continued training required.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.3 -->
+            <section class="section" id="standards">
+                <div class="section-header">
+                    <span class="section-number">3.0.3</span>
+                    <h2>Staff Standards</h2>
+                </div>
+                <div class="card">
+                    <p>Maintain <strong>professionalism</strong>, <strong>fairness</strong>, and a <strong>positive experience</strong> for members.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.4 -->
+            <section class="section" id="requirements">
+                <div class="section-header">
+                    <span class="section-number">3.0.4</span>
+                    <h2>Activity Requirements</h2>
+                </div>
+                <div class="card">
+                    <p>Minimum <strong>35 messages per week</strong> required to remain active staff.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.5 -->
+            <section class="section" id="ticketrules">
+                <div class="section-header">
+                    <span class="section-number">3.0.5</span>
+                    <h2>Ticket Rules</h2>
+                </div>
+                <div class="card">
+                    <p>Only the <strong>claiming staff member</strong> may handle the ticket. Manual channels required if system fails.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.6 -->
+            <section class="section" id="ranks">
+                <div class="section-header">
+                    <span class="section-number">3.0.6</span>
+                    <h2>DO NOT ASK FOR RANKS</h2>
+                </div>
+                <div class="card">
+                    <p>Do not request promotions. Ranks are earned through <strong>activity</strong> and <strong>performance</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.7 -->
+            <section class="section" id="progressive">
+                <div class="section-header">
+                    <span class="section-number">3.0.7</span>
+                    <h2>Progressive Discipline System</h2>
+                </div>
+                <div class="card">
+                    <ul>
+                        <li>
+                            <i class="ph-fill ph-warning card-icon"></i>
+                            <span>3 Warnings = Infraction</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-warning card-icon"></i>
+                            <span>3 Infractions = Strike</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-warning card-icon"></i>
+                            <span>2 Strikes = Demotion</span>
+                        </li>
+                        <li>
+                            <i class="ph-fill ph-x-circle card-icon"></i>
+                            <span>3rd Strike = Termination</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3.0.8 -->
+            <section class="section" id="formats">
+                <div class="section-header">
+                    <span class="section-number">3.0.8</span>
+                    <h2>Staff Formats</h2>
+                </div>
+                <div class="card">
+                    <p><strong>M</strong>, <strong>A</strong>, <strong>IA</strong>, <strong>MGT</strong>, <strong>E</strong>, <strong>COS</strong>, <strong>SS</strong>, <strong>SM</strong>, <strong>D</strong>, <strong>DD</strong>, <strong>AD</strong>, <strong>O</strong>, <strong>CO</strong>, <strong>ACO</strong>, <strong>F</strong>, <strong>CF</strong>, <strong>ACF</strong>, <strong>SH</strong>, <strong>SHA</strong>.</p>
+                </div>
+            </section>
+
+            <!-- Section 3.0.9 -->
+            <section class="section" id="finalchain">
+                <div class="section-header">
+                    <span class="section-number">3.0.9</span>
+                    <h2>Chain of Command</h2>
+                </div>
+                <div class="card">
+                    <p>Link coming soon.</p>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-left">
+                    <div class="footer-logo">
+                        <i class="ph-fill ph-buildings"></i>
+                    </div>
+                    <span>© 2025 Diamond Nation Studios</span>
+                </div>
+                <div class="footer-right">
+                    <span><i class="ph-fill ph-city"></i> Miami City Roleplay</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
+

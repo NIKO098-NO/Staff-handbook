@@ -1,0 +1,17 @@
+{
+  "name": "mcrp-staff-handbook",
+  "version": "1.0.0",
+  "description": "Miami City Roleplay Staff Handbook - Static site with serverless functions",
+  "main": "api/health.js",
+  "scripts": {
+    "start": "vercel dev",
+    "build": "echo 'Build complete - static site'"
+  },
+  "keywords": ["vercel", "serverless", "handbook", "documentation"],
+  "author": "Diamond Nation Studios",
+  "license": "MIT",
+  "engines": {
+    "node": "18.x"
+  }
+}
+
